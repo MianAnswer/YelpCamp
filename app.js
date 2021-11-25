@@ -74,9 +74,9 @@ app.use('*', (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-    const { message = 'Something went wrong!', statusCode = 500 } = err;
-    res.status(statusCode);
-    res.send(message);
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = 'Something went wrong!';
+    res.status(statusCode).render('error', { err });
 });
 
 app.listen(3000, () => {
