@@ -5,6 +5,7 @@ const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const Campground = require('./models/campground');
+const Review = require('./models/review');
 const { campgroundSchema } = require('./schemas');
 const ejsMate = require('ejs-mate');
 
@@ -60,6 +61,15 @@ app.post('/campgrounds', validateCampground, catchAsync(async (req, res, next) =
 app.get('/campgrounds/:id', catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
     res.render('campgrounds/show', { campground });
+}));
+
+app.post('/campgrounds/:id/reviews', catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    const review = new Review(req.params.review);
+    campground.reviews.push(review);
+    await review.save();
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`);
 }));
 
 app.get('/campgrounds/:id/edit', catchAsync(async (req, res) => {
