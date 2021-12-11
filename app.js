@@ -3,14 +3,16 @@ const path = require('path');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
-const campgroundRoute = require('./routes/campgrounds');
-const reviewRoute = require('./routes/reviews');
 const ejsMate = require('ejs-mate');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
+
+const userRoute = require('./routes/users');
+const campgroundRoute = require('./routes/campgrounds');
+const reviewRoute = require('./routes/reviews');
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
@@ -60,6 +62,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/', userRoute);
 app.use('/campgrounds', campgroundRoute);
 app.use('/campgrounds/:id/reviews', reviewRoute);
 
