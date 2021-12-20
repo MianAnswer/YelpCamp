@@ -24,7 +24,24 @@ const seedDB = async () => {
         const camp = new Campground({
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://source.unsplash.com/collection/483251',
+            images: [
+                {
+                    url: 'https://res.cloudinary.com/dohwyiqtt/image/upload/v1639961306/YelpCamp/dcd278s59vrec9sx1scr.jpg',
+                    filename: 'YelpCamp/dcd278s59vrec9sx1scr',
+                },
+                {
+                    url: 'https://res.cloudinary.com/dohwyiqtt/image/upload/v1639961309/YelpCamp/gnpmdxovngn5ywlm29ey.jpg',
+                    filename: 'YelpCamp/gnpmdxovngn5ywlm29ey',
+                },
+                {
+                    url: 'https://res.cloudinary.com/dohwyiqtt/image/upload/v1639961311/YelpCamp/visoysa5r1mce1425nvl.jpg',
+                    filename: 'YelpCamp/visoysa5r1mce1425nvl',
+                },
+                {
+                    url: 'https://res.cloudinary.com/dohwyiqtt/image/upload/v1639961311/YelpCamp/flqawsobzr3ljo5x8qkp.jpg',
+                    filename: 'YelpCamp/flqawsobzr3ljo5x8qkp',
+                }
+            ],
             description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci, magnam ipsa, consequuntur fuga amet sequi quod pariatur a, ab qui ex nisi! Odit beatae provident consectetur? Eos sequi esse qui. Ducimus voluptatum, quisquam deserunt a cumque iusto facere accusantium, velit quae, sapiente voluptate. Alias molestiae, dolor dolores laudantium totam quae aspernatur distinctio sapiente quod qui iure odit recusandae voluptas nostrum!',
             price,
             author: '61b4cd6ad3bc5eb3cfe62659'
