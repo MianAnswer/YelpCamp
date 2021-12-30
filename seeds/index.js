@@ -2,8 +2,10 @@ const mongoose = require('mongoose');
 const cities = require('./cities');
 const { places, descriptors } = require('./seedHelpers');
 const Campground = require('../models/campground');
+require('dotenv').config();
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp', {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -48,7 +50,7 @@ const seedDB = async () => {
             ],
             description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci, magnam ipsa, consequuntur fuga amet sequi quod pariatur a, ab qui ex nisi! Odit beatae provident consectetur? Eos sequi esse qui. Ducimus voluptatum, quisquam deserunt a cumque iusto facere accusantium, velit quae, sapiente voluptate. Alias molestiae, dolor dolores laudantium totam quae aspernatur distinctio sapiente quod qui iure odit recusandae voluptas nostrum!',
             price,
-            author: '61b4cd6ad3bc5eb3cfe62659'
+            author: '61ce04cd52727c50091d8019'
         });
         await camp.save();
     }
